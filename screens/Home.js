@@ -1,6 +1,7 @@
 import { View, Text, SafeAreaView, StyleSheet, Image } from "react-native";
 import React from "react";
 import tw from "twrnc";
+import NavOptions from "../componets/NavOptions";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
             uri: "https://links.papareact.com/gzs",
           }}
         />
+        <NavOptions />
       </View>
     </SafeAreaView>
   );

@@ -4,10 +4,12 @@ import tw from "twrnc";
 import NavOptions from "../componets/NavOptions";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_API_KEY } from "@env";
+import { useDispatch } from "react-redux";
+import { setDestination, setOrigin } from "../slices/navSlice";
 
 const Home = () => {
+  const dispach = useDispatch();
 
-  
   return (
     <SafeAreaView style={[styles.droidSafeArea, tw`bg-white h-full`]}>
       <View style={tw`p-5`}>
@@ -27,8 +29,13 @@ const Home = () => {
           fetchDetails={true}
           query={{ key: GOOGLE_API_KEY, language: "en" }}
           onPress={(data, details = null) => {
-            console.log(data)
-            console.log(details)
+            dispach(
+              setOrigin({
+                location: details.geometry.location,
+                destination: data.description,
+              })
+            );
+            dispach(setDestination(null));
           }}
         />
         <NavOptions />
